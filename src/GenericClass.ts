@@ -1,11 +1,7 @@
 export {};
 //--------
 
-interface HasId {
-    id: number
-}
-
-class DataCollection<T extends HasId> {
+class DataCollection<T> {
     constructor(private data: T[]) {}
     
     loadOne(): T {
@@ -21,26 +17,20 @@ class DataCollection<T extends HasId> {
         this.data.push(val)
         return this.data
     }
-
-    deleteOne(id: number): void {
-        this.data = this.data.filter((item) => item.id !== id)
-    }
 }
 
 interface User {
     name: string
     score: number
-    id: number
 }
 
 const users = new DataCollection<User>([
-    {name: 'shaun', score: 100, id: 3},
-    {name: 'mario', score: 110, id: 1},
-    {name: 'paech', score: 120, id: 2}
+    {name: 'shaun', score: 100},
+    {name: 'mario', score: 110},
+    {name: 'paech', score: 120}
 ])
 
-users.add({ name: 'luigi', score: 10, id: 4})
-users.deleteOne(1)
+users.add({ name: 'luigi', score: 10})
 
 const user = users.loadAll
 

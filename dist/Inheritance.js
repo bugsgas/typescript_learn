@@ -1,9 +1,17 @@
 "use strict";
-//clases 101
-class Pizza {
+Object.defineProperty(exports, "__esModule", { value: true });
+class MenuItem {
     constructor(title, price) {
         this.title = title;
         this.price = price;
+    }
+    get details() {
+        return `${this.title} - $${this.price}`;
+    }
+}
+class Pizza extends MenuItem {
+    constructor(title, price) {
+        super(title, price);
         this.base = 'Classic';
         this.toppings = [];
     }
@@ -17,11 +25,8 @@ class Pizza {
         this.base = b;
     }
 }
-const pizzaOne = new Pizza('mario special', 15);
-const pizzaTwo = new Pizza('luigi special', 10);
-function addMushroomsToPizzas(pizzas) {
-    for (const p of pizzas) {
-        p.addTopping('mushrooms');
-    }
+const pizza = new Pizza('mario special', 15);
+function printMenuItem(item) {
+    console.log(item.details);
 }
-addMushroomsToPizzas([pizzaOne, pizzaTwo]);
+printMenuItem(pizza);
